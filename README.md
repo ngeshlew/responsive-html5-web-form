@@ -16,6 +16,7 @@ This is an example Single Page Application using the libraries and principles I 
 5. jQuery scripts embedded and externally linked.
 
 The form has the following features:
+
 1. jQuery Powered
 
 2. Fully Responsive Layout
