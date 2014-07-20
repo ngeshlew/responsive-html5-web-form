@@ -71,12 +71,12 @@ error_reporting(E_ALL ^ E_NOTICE); // hide all basic notices from PHP
 	<meta charset="utf-8">
 	<meta name="description" content="">
 	<meta name="author" content="Lewis Kang'ethe Ngugi">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 	
 	<!-- For all browsers -->
 
     	<link type="text/css" href="style.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Oxygen&effect=anaglyph|Source+Sans+Pro' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Oxygen|Source+Sans+Pro' rel='stylesheet' type='text/css'>
     	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	
 	<script type="text/javascript">
