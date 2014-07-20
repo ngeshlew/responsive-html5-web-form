@@ -6,7 +6,7 @@ if(isset($_POST['submitted'])) {
 	
 	// require a name from user
 	if(trim($_POST['name']) === '') {
-		$nameErr =  'Forgot your name!'; 
+		$nameErr =  'Please enter your name!'; 
 		$hasError = true;
 	} else {
 		$name = trim($_POST['name']);
@@ -14,7 +14,7 @@ if(isset($_POST['submitted'])) {
 	
 	// need valid email
 	if(trim($_POST['email']) === '')  {
-		$emailErr = 'Forgot to enter in your e-mail address.';
+		$emailErr = 'Please enter in your e-mail address.';
 		$hasError = true;
 	} else if (!preg_match("/^[[:alnum:]][a-z0-9_.-]*@[a-z0-9.-]+\.[a-z]{2,4}$/i", trim($_POST['email']))) {
 		$emailErr = 'Invalid Email Address.';
@@ -25,7 +25,7 @@ if(isset($_POST['submitted'])) {
 	
 	// need valid website
 	if(trim($_POST['url']) === '')  {
-		$websiteErr = 'Forgot to enter in your website.';
+		$websiteErr = 'Please enter in your website.';
 		$hasError = true;
 	} else if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
   		$websiteErr = "Invalid URL"; 
@@ -36,7 +36,7 @@ if(isset($_POST['submitted'])) {
 		
 	// we need at least some content
 	if(trim($_POST['message']) === '') {
-		$commentError = 'You forgot to enter a message!';
+		$commentError = 'Please enter a message!';
 		$hasError = true;
 	} else {
 		if(function_exists('stripslashes')) {
@@ -80,14 +80,6 @@ if(isset($_POST['submitted'])) {
     	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	
 	<script type="text/javascript">
-	
-			
-	  $(document).bind('autofocus_ready', function() {
-		if (!("autofocus" in document.createElement("input"))) {
-		  $("#name").focus();
-			}
-		});
-	
 		// feature detect
 		var supportsRequired = 'required' in document.createElement('input');
 
@@ -107,7 +99,7 @@ if(isset($_POST['submitted'])) {
             <?php } else { ?>
 		
 	
-<form action="index.php" method="post" class="dark">
+<form action="form.php" method="post" class="dark">
     <h1>Contact Form 
         <span>Please fill all the texts in the fields.</span>
     </h1>
@@ -117,14 +109,21 @@ if(isset($_POST['submitted'])) {
 				
     <label>
         <span>Your Name :</span>
-        <input class="name" id="name" type="text" name="name" placeholder="Your Full Name" value="<?php if(isset($_POST['name'])) echo $_POST['name'];?>" autofocus required/>
+        <input class="name" id="name" type="text" name="name" placeholder="Enter Full Name" value="<?php if(isset($_POST['name'])) echo $_POST['name'];?>" autofocus required/>
+        <script type="text/javascript"><script type="text/javascript">
+		  $(document).bind('autofocus_ready', function() {
+			if (!("autofocus" in document.createElement("input"))) {
+			  $("#name").focus();
+				}
+			});
+		</script>
 	 </label>
 		<?php if($nameErr != '') { ?><span class="error"><?php echo $nameErr;?></span> <?php } ?>
 	
     
 	<label>
         <span>Your Email :</span>
-        <input class="email" id="email" type="email" name="email" placeholder="Valid Email Address" value="<?php if(isset($_POST['email']))  echo $_POST['email'];?>" required />
+        <input class="email" id="email" type="email" name="email" placeholder="Enter Email Address" value="<?php if(isset($_POST['email']))  echo $_POST['email'];?>" required />
     </label>
 		<?php if($emailErr != '') { ?><span class="error"><?php echo $emailErr;?></span>	<?php } ?>
 	
