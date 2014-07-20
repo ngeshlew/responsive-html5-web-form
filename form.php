@@ -1,8 +1,8 @@
 <?php 
 error_reporting(E_ALL ^ E_NOTICE); // hide all basic notices from PHP
 
-//If the form is submitted
-if(isset($_POST['submitted'])) {
+	//If the form is submitted
+	if(isset($_POST['submitted'])) {
 	
 	// require a name from user
 	if(trim($_POST['name']) === '') {
@@ -36,7 +36,7 @@ if(isset($_POST['submitted'])) {
 		
 	// we need at least some content
 	if(trim($_POST['message']) === '') {
-		$commentError = 'Please enter a message!';
+		$commentErr = 'Please enter a message!';
 		$hasError = true;
 	} else {
 		if(function_exists('stripslashes')) {
@@ -55,7 +55,7 @@ if(isset($_POST['submitted'])) {
 		$body = "Name: $name \n\nEmail: $email \n\nComments: $comments";
 		$headers = 'From: ' .' <'.$emailTo.'>' . "\r\n" . 'Reply-To: ' . $email;
 
-		  $success = mail($emailTo, $subject, $body, $headers);
+		$success = mail($emailTo, $subject, $body, $headers);
         
         // set our boolean completion value to TRUE
 		$emailSent = true;
@@ -99,93 +99,88 @@ if(isset($_POST['submitted'])) {
             <?php } else { ?>
 		
 	
-<form action="form.php" method="post" class="dark">
-    <h1>Contact Form 
-        <span>Please fill all the texts in the fields.</span>
-    </h1>
-					<?php if(isset($hasError)) { ?>
-                        <span class="alert">Error submitting the form</span>
-                    <?php } ?>
-				
-    <label>
-        <span>Your Name :</span>
-        <input class="name" id="name" type="text" name="name" placeholder="Enter Full Name" value="<?php if(isset($_POST['name'])) echo $_POST['name'];?>" autofocus required/>
-        <script type="text/javascript"><script type="text/javascript">
-		  $(document).bind('autofocus_ready', function() {
-			if (!("autofocus" in document.createElement("input"))) {
-			  $("#name").focus();
-				}
+	<form action="form.php" method="post" class="dark">
+	    <h1>Contact Form <span>Please fill all the texts in the fields.</span> </h1>
+			<?php if(isset($hasError)) { ?> <span class="alert">Error submitting the form</span> <?php } ?>
+					
+	    	<label>
+	        <span>Your Name :</span>
+	        <input class="name" id="name" type="text" name="name" placeholder="Enter Full Name" value="<?php if(isset($_POST['name'])) echo $_POST['name'];?>" autofocus required/>
+	        <script type="text/javascript"><script type="text/javascript">
+			$(document).bind('autofocus_ready', function() {
+				if (!("autofocus" in document.createElement("input"))) {
+				  $("#name").focus();
+					}
 			});
 		</script>
-	 </label>
-		<?php if($nameErr != '') { ?><span class="error"><?php echo $nameErr;?></span> <?php } ?>
-	
-    
-	<label>
-        <span>Your Email :</span>
-        <input class="email" id="email" type="email" name="email" placeholder="Enter Email Address" value="<?php if(isset($_POST['email']))  echo $_POST['email'];?>" required />
-    </label>
-		<?php if($emailErr != '') { ?><span class="error"><?php echo $emailErr;?></span>	<?php } ?>
-	
-        
-    <label>
-        <span>Your Website :</span>
-        <input class="url" id="url" type="url" name="url" required placeholder="Valid Website Url" pattern="https?://.+" value="<?php if(isset($_POST['url']))  echo $_POST['url'];?>">
-    </label>
-	<?php if($websiteErr != '') { ?><span class="error"><?php echo $websiteErr ;?></span>	<?php } ?>
-	
-    <label>
-        <span>Message :</span>
-        <textarea class="message" id="message" name="message" placeholder="Enter your comment" required><?php if(isset($_POST['message'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['message']); } else { echo $_POST['message']; } } ?></textarea>
-	</label> 		
-		<?php if($commentError != '') { ?><span class="error"><?php echo $commentError;?></span><?php } ?>
-			
-	<label>
-        <span>&nbsp;</span> 
+		</label>
+			<?php if($nameErr != '') { ?><span class="error"><?php echo $nameErr;?></span> <?php } ?>
 		
-        <button name="submit" type="submit" class="subbutton">Send</button>
+	    	<label>
+	        <span>Your Email :</span>
+	        <input class="email" id="email" type="email" name="email" placeholder="Enter Email Address" value="<?php if(isset($_POST['email']))  echo $_POST['email'];?>" required />
+	    	</label>
+			<?php if($emailErr != '') { ?><span class="error"><?php echo $emailErr;?></span> <?php } ?>
+		
+	        
+	    	<label>
+	        <span>Your Website :</span>
+	        <input class="url" id="url" type="url" name="url" required placeholder="Valid Website Url" pattern="https?://.+" value="<?php if(isset($_POST['url']))  echo $_POST['url'];?>">
+	    	</label>
+			<?php if($websiteErr != '') { ?><span class="error"><?php echo $websiteErr ;?></span>	<?php } ?>
+		
+	    	<label>
+	        <span>Message :</span>
+	        <textarea class="message" id="message" name="message" placeholder="Enter your comment" required><?php if(isset($_POST['message'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['message']); } else { echo $_POST['message']; } } ?></textarea>
+		</label> 		
+			<?php if($commentError != '') { ?><span class="error"><?php echo $commentError;?></span><?php } ?>
+				
+		<label>
+	        <span>&nbsp;</span> 
+			
+	        <button name="submit" type="submit" class="subbutton">Send</button>
 		<input type="hidden" name="submitted" id="submitted" value="true" />
-    </label>    
-</form>
-		<?php } ?>
-</div>
-	<!-- End #contact -->
-	
-<script type="text/javascript">
-	<!--//--><![CDATA[//><!--
-	$(document).ready(function() {
-		$('form').submit(function() {
-			$('form.dark .error').remove();
-			var hasError = false;
-			if ($('[required]').each(function() == true) {
-				if($.trim($(this).val()) == '') {
-					var labelText = $(this).prev('label').text();
-					$(this).parent().append('< class="error">Your forgot to enter your '+labelText+'.</p>');
-					$(this).addClass('inputError');
-					hasError = true;
-				} else if($(this).hasClass('email')) {
-					var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-					if(!emailReg.test($.trim($(this).val()))) {
+	    </label>    
+	</form>
+			<?php } ?>
+	</div>
+		<!-- End #contact -->
+		
+	<script type="text/javascript">
+		<!--//--><![CDATA[//><!--
+		$(document).ready(function() {
+			$('form').submit(function() {
+				$('form.dark .error').remove();
+				var hasError = false;
+				if ($('[required]').each(function() == true) {
+					if($.trim($(this).val()) == '') {
 						var labelText = $(this).prev('label').text();
-						$(this).parent().append('<p class="error">Sorry! You\'ve entered an invalid '+labelText+'.</p>');
+						$(this).parent().append('< class="error">Your forgot to enter your '+labelText+'.</p>');
 						$(this).addClass('inputError');
 						hasError = true;
+					} else if($(this).hasClass('email')) {
+						var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+						if(!emailReg.test($.trim($(this).val()))) {
+							var labelText = $(this).prev('label').text();
+							$(this).parent().append('<p class="error">Sorry! You\'ve entered an invalid '+labelText+'.</p>');
+							$(this).addClass('inputError');
+							hasError = true;
+						}
 					}
-				}
-			});
-			if(!hasError) {
-				var formInput = $(this).serialize();
-				$.post($(this).attr('action'),formInput, function(data){
-					$('form.dark').slideUp("fast", function() {				   
-						$(this).before('<p class="tick"><strong>Thanks!</strong> Your email has been delivered. Cheers!</p>');
-					});
 				});
-			}
-			
-			return false;	
+				if(!hasError) {
+					var formInput = $(this).serialize();
+					$.post($(this).attr('action'),formInput, function(data){
+						$('form.dark').slideUp("fast", function() {				   
+							$(this).before('<p class="tick"><strong>Thanks!</strong> Your email has been delivered. Cheers!</p>');
+						});
+					});
+				}
+				
+				return false;	
+			});
 		});
-	});
-	//-->!]]>
-</script>
+		//-->!]]>
+	</script>
 </body>
 </html>
