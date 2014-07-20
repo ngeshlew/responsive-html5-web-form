@@ -78,6 +78,19 @@ error_reporting(E_ALL ^ E_NOTICE); // hide all basic notices from PHP
     	<link type="text/css" href="style.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Oxygen|Source+Sans+Pro' rel='stylesheet' type='text/css'>
     	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    	
+    	<script type="application/x-javascript">
+		if (navigator.userAgent.indexOf('iPhone') != -1) {
+		addEventListener("load", function() {
+		setTimeout(hideURLbar, 0);
+		}, false);
+		}
+		
+		function hideURLbar() {
+		window.scrollTo(0, 1);
+		}
+
+	</script>
 	
 	<script type="text/javascript">
 		// feature detect
