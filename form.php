@@ -75,10 +75,10 @@ error_reporting(E_ALL ^ E_NOTICE); // hide all basic notices from PHP
 	
 	<!-- For all browsers -->
 
-    	<link type="text/css" href="style.css" rel="stylesheet">
+    	<link type="text/css" href="css/style.css" rel="stylesheet" media='screen'>
 	<link href='http://fonts.googleapis.com/css?family=Oxygen|Source+Sans+Pro' rel='stylesheet' type='text/css'>
     	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    	
+    	<link media="only screen and (max-device-width: 480px) and (min-device-width: 320px)" href="css/mobile.css" type= "text/css" rel="stylesheet">
     	<script type="application/x-javascript">
 		if (navigator.userAgent.indexOf('iPhone') != -1) {
 		addEventListener("load", function() {
