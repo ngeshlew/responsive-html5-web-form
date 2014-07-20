@@ -26,14 +26,23 @@ The form has the following features:
 5. Compatible Browsers: IE7, IE8, IE9, IE10, IE11, Firefox, Safari, Opera, Chrome
 
 6. Clean Design
+
 7. Highly Customizable
+
 8. Works even with Javascript Disabled
+
 9. PHP validation
+
 10. HTML5 validation
+
 11. Fallback scripts for unsupported browsers
 
 The inputs required are:
+
 1. Name
+
 2. Email
+
 3. Website
+
 4. Message.
